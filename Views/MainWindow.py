@@ -2,6 +2,9 @@ import sys
 from PyQt5.QtWidgets import QWidget, QCheckBox, QApplication, QMainWindow, QGraphicsOpacityEffect
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
+
+from Model.Overlay import Overlay
+
 sys.path.insert(0, '../Controllers')
 sys.path.insert(1, '../Model')
 sys.path.insert(2, '../Views')
@@ -30,7 +33,7 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
         self.view = LandingPage.LandingPage()
-        self.view.initUI()
+        #self.view.initUI()
         #self.statusBar().showMessage('StatusBar:')
         self.setCentralWidget(self.view)
 

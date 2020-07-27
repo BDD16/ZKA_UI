@@ -9,6 +9,9 @@ from PyQt5.QtWidgets import  *
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 
+from Model.CustomLabel import LoadingLabel
+from Model.Overlay import Overlay
+
 sys.path.insert(0, '../Controllers')
 sys.path.insert(1, '../Model')
 sys.path.insert(2, '../Views')
@@ -72,17 +75,28 @@ class LandingPage(BaseView.BaseView):
         # splitter2.setGeometry(0,0,20,700)
         # #hbox.addWidget(splitter1)
         # #hbox.addWidget(top_right)
-        self.m_label = QLabel(alignment=Qt.AlignCenter)
+        self.m_label = LoadingLabel(alignment=Qt.AlignCenter)
         self.m_label.setPixmap(self.p)
         self.m_label.setAttribute(Qt.WA_TranslucentBackground, True)
+
+
+
+
+
         hbox.addWidget(self.m_label)
-        self.setGeometry(300, 300, 450, 450)
+
+
+        self.setGeometry(300, 300, 300, 300)
         #
         pallete = QPalette()
         pallete.setColor(QPalette.Background, Qt.gray)
         #  #pallete.setColor(QPalette.Background, Qt.green)
         self.setAutoFillBackground(True)
         self.setPalette(pallete)
+
+        self.overlay = Overlay(self.m_label)
+        self.m_label.clicked.connect(self.overlay.show)
+
 
 
         #self.show()

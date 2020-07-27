@@ -2,27 +2,28 @@
 CustomLabelType
 '''
 import sys
+
 sys.path.insert(0, '../Controllers')
 sys.path.insert(1, '../Model')
 sys.path.insert(2, '../Views')
-from PyQt5.QtWidgets import  *
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import os
 import math
 import BaseView
 
-
 me = '[CustomLabel]'
+
 
 class CustomLabel(QLabel):
     '''
     A Draggable CustomLabel
     '''
 
-    def __init__(self,view):
+    def __init__(self, view):
         super(CustomLabel, self).__init__(view)
-        self.curiousposition = [0,0]
+        self.curiousposition = [0, 0]
         self.rotateby = 0
         self.setAlignment(Qt.AlignCenter)
         self.rotation = 0
@@ -34,7 +35,7 @@ class CustomLabel(QLabel):
 
     def rotate_pixmap(self, rotateby):
         pixmap = self.view.p2
-        diag = (pixmap.width()**2 + pixmap.height()**2)**.5
+        diag = (pixmap.width() ** 2 + pixmap.height() ** 2) ** .5
         self.setMinimumSize(diag, diag)
         self.rotation = rotateby
         transform = QTransform().rotate(self.rotation)
@@ -55,15 +56,16 @@ class CustomLabel(QLabel):
 
             for i in range(2):
                 j = (-1) ** i
-                k = (-1) ** (i+2)
+                k = (-1) ** (i + 2)
                 x = DropLabel(self.view, self)
                 y = DropLabel(self.view, self)
                 for comp in self.view.components:
-                    if comp.inRange(self.origin - QPoint(75*(-j), 75*k)) and (type(self) != type(comp)) and isinstance(comp, Submarines.Submarines) and (comp != self):
+                    if comp.inRange(self.origin - QPoint(75 * (-j), 75 * k)) and (
+                            type(self) != type(comp)) and isinstance(comp, Submarines.Submarines) and (comp != self):
                         x.setPixmap(QPixmap(os.getcwd() + '/images/1337_Logo_small.png'))
                         x.imagename = 'Red'
                         break
-                    elif comp.inRange(self.origin - QPoint(75*j, 75*k)):
+                    elif comp.inRange(self.origin - QPoint(75 * j, 75 * k)):
                         x.setPixmap(QPixmap(os.getcwd() + '/images/SP_logo.png'))
                         x.imagename = 'Blue'
                         break
@@ -71,11 +73,12 @@ class CustomLabel(QLabel):
                         x.setPixmap(QPixmap(os.getcwd() + '/images/1337_Logo_small.png'))
 
                 for comp in self.view.components:
-                    if comp.inRange(self.origin - QPoint(75*(-j), 75*k)) and (type(self) != type(comp)) and isinstance(comp, Submarines.Submarines) and (comp != self):
+                    if comp.inRange(self.origin - QPoint(75 * (-j), 75 * k)) and (
+                            type(self) != type(comp)) and isinstance(comp, Submarines.Submarines) and (comp != self):
                         y.setPixmap(QPixmap(os.getcwd() + '/images/1337_Logo_small.png'))
                         y.imagename = 'Red'
                         break
-                    elif comp.inRange(self.origin - QPoint(75*(-j), 75*k)):
+                    elif comp.inRange(self.origin - QPoint(75 * (-j), 75 * k)):
                         y.setPixmap(QPixmap(os.getcwd() + '/images/SP_logo.png'))
                         y.imagename = 'Blue'
                         break
@@ -85,15 +88,14 @@ class CustomLabel(QLabel):
                         y.imagename = 'Green'
 
                 print(self.origin)
-                x.move(self.origin - QPoint(75*j,75*k))
-                y.move(self.origin - QPoint(75*(-j), 75*(k)))
+                x.move(self.origin - QPoint(75 * j, 75 * k))
+                y.move(self.origin - QPoint(75 * (-j), 75 * (k)))
 
                 self.view.components.append(x)
                 self.view.components.append(y)
                 x.show()
                 y.show()
             self.view.showFullScreen()
-
 
     def mouseMoveEvent(self, event):
         # for comp in self.view.components:
@@ -110,7 +112,7 @@ class CustomLabel(QLabel):
         diff = globalPos - self.__mouseMovePos
         newPos = self.mapFromGlobal(currPos + diff)
 
-        if newPos !=None:
+        if newPos != None:
             self.move(newPos)
 
         drag = QDrag(self)
@@ -129,7 +131,7 @@ class CustomLabel(QLabel):
         self.move(newPos)
         self.__mouseMovePos = globalPos
         self.__newPos = newPos
-        if(((math.fabs(diff.x())**2 + math.fabs(diff.y())**2)*0.5) > (math.fabs(self.width()))):
+        if (((math.fabs(diff.x()) ** 2 + math.fabs(diff.y()) ** 2) * 0.5) > (math.fabs(self.width()))):
             print("out of bounds")
             drag.setPixmap(QPixmap(os.getcwd() + '/images/SP_logo.png'))
         drag.exec_(Qt.MoveAction | Qt.MoveAction, Qt.CopyAction)
@@ -152,14 +154,13 @@ class DropLabel(QLabel):
 
     def __init__(self, view, *args, **kwargs):
         super(DropLabel, self).__init__(view)
-        #QLabel.__init__(self, *args, **kwargs)
+        # QLabel.__init__(self, *args, **kwargs)
         self.setAcceptDrops(True)
-        self.curiousposition = [0,0]
+        self.curiousposition = [0, 0]
         self.setAlignment(Qt.AlignCenter)
         self.args = args
         self.view = view
         self.imagename = 'Green'
-
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasImage() and (self.imagename == 'Green' or self.imagename == 'Red'):
@@ -177,10 +178,10 @@ class DropLabel(QLabel):
                 if isinstance(a, CustomLabel):
                     if self.imagename == 'Red':
                         print('LET THE BATTLE BEGIN')
-                        #TODO: OPEN a new window
-                        #detect component that is in question
-                        #make sure that the self.pos is within the collision distance
-                        #of what is supposed to be battled out
+                        # TODO: OPEN a new window
+                        # detect component that is in question
+                        # make sure that the self.pos is within the collision distance
+                        # of what is supposed to be battled out
                         self.GameEngine = GameEngine.GameEngine(self.view)
                         self.BattleWindow = self.GameEngine.BeginBattle(self.view)
 
@@ -200,7 +201,16 @@ class DropLabel(QLabel):
 
             event.accept()
 
-
-
             return
-            #self.setPixmap(QPixmap.fromImage(QImage(event.mimeData().imageData())))
+            # self.setPixmap(QPixmap.fromImage(QImage(event.mimeData().imageData())))
+
+
+class LoadingLabel(QLabel):
+    clicked = pyqtSignal()
+
+    def __init__(self, parent=None, **kwargs):
+        super(LoadingLabel, self).__init__(**kwargs)
+
+    def mousePressEvent(self, ev):
+        self.clicked.emit()
+

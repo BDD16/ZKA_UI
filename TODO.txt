@@ -1,0 +1,23 @@
+TODO: Project: Shark UI
+1) Create a controller for interacting with the password complexity model
+2) add in One Text entry
+3) add in a static progress bar for that is updated dynamically No need for
+calculation button
+    -in Java this is easy as there is a key down interrupt.
+    -Need to find the equivalent key down signal for implementing the dynamic
+
+4)User Story: Password complexity bar should be calculated as a new character is typed
+
+----------MVP (Minium Viable Product is up to this point)-----------------------
+0) include documentation in final production deliverable i.e. USER GUIDE
+----------Bells and Whistles----------------------------------------------------
+
+5)Change the color of the bar from red as insufficient, orange as sufficient,
+yellow as good, and green as secure.
+    -Need to come up with a value indicator that has been published to identify
+    These colored tiers
+
+6)Change the background color to a gradient gray (white near the bottom)
+7)Ability to be resized (in case screen resolutions change)
+8) show the calculated score to the right of the bar (in case the bar is saturated)
+9) include a drop down of different languages and and adapt N to the equation.

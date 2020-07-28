@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import  *
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 
-from Model.CustomLabel import LoadingLabel
+from Model.CustomLabel import LoadingLabel, LogoLabel
 from Model.Overlay import Overlay
 
 sys.path.insert(0, '../Controllers')
@@ -36,6 +36,7 @@ class LandingPage(BaseView.BaseView):
     def initUI(self):
 
         self.p = QPixmap(os.getcwd() + '/images/DarkKnight_logo.png')
+        self.logo = QPixmap(os.getcwd() + '/images/1337_TECH_NEW_LOGO.png')
 
         # self.setGeometry(300, 300, 250, 150)
         # self.setWindowTitle('Password Complexity UI')
@@ -78,12 +79,21 @@ class LandingPage(BaseView.BaseView):
         self.m_label = LoadingLabel(alignment=Qt.AlignCenter)
         self.m_label.setPixmap(self.p)
         self.m_label.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.logo_label = LogoLabel(self.m_label)
+        self.logo_label.setPixmap(self.logo)
+        self.logo_label.setGeometry(-self.width() / 2 + self.width(),
+                                    -self.height() / 2 + self.height() - 25,
+                                    self.logo.width(), self.logo.height())
+        self.logo_label.setAttribute(Qt.WA_TranslucentBackground, True)
+
+
 
 
 
 
 
         hbox.addWidget(self.m_label)
+        #hbox.addWidget(self.logo_label)
 
 
         self.setGeometry(300, 300, 300, 300)
@@ -96,6 +106,7 @@ class LandingPage(BaseView.BaseView):
 
         self.overlay = Overlay(self.m_label)
         self.m_label.clicked.connect(self.overlay.show)
+        self.logo_label.clicked.connect(self.overlay.show)
 
 
 

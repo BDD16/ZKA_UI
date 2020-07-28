@@ -12,20 +12,20 @@ class Overlay(QWidget):
         palette.setColor(palette.Background, Qt.transparent)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setPalette(palette)
-        self.setGeometry(parent.width() + 50 , parent.height()/2 - 25, 100, 100)
+        self.setGeometry(parent.width() + 75 , parent.height()/2 - 25, 100, 100)
 
     def paintEvent(self, event):
         painter = QPainter()
         painter.begin(self)
         painter.setRenderHint(QPainter.Antialiasing)
-        painter.fillRect(event.rect(), QBrush(QColor(255, 255, 255, 127)))
+        painter.fillRect(event.rect(), QBrush(QColor(255, 140, 140, 0)))
         painter.setPen(QPen(Qt.NoPen))
 
         for i in range(6):
             if (self.counter / 5) % 6 == i:
                 painter.setBrush(QBrush(QColor(127 + (self.counter % 5) * 32, 153, 300)))
             else:
-                painter.setBrush(QBrush(QColor(127, 127, 127)))
+                painter.setBrush(QBrush(QColor(240, 40, 40)))
             painter.drawEllipse(
                 self.frameGeometry().width() / 2 + 30 * math.cos(2 * math.pi * i / 6.0) - 10,
                 self.frameGeometry().height() / 2 + 30 * math.sin(2 * math.pi * i / 6.0) - 10,

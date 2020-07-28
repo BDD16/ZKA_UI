@@ -214,3 +214,11 @@ class LoadingLabel(QLabel):
     def mousePressEvent(self, ev):
         self.clicked.emit()
 
+class LogoLabel(QLabel):
+    clicked = pyqtSignal()
+
+    def __init__(self, parent=None, **kwargs):
+        super(LogoLabel, self).__init__(parent, **kwargs)
+
+    def mousePressEvent(self, ev):
+        self.clicked.emit()

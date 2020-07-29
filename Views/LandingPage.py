@@ -9,13 +9,15 @@ from PyQt5.QtWidgets import  *
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
 
-from Model.CustomLabel import LoadingLabel, LogoLabel
-from Model.Overlay import Overlay
+from Views.MainWindow import MainWindow
 
 sys.path.insert(0, '../Controllers')
 sys.path.insert(1, '../Model')
 sys.path.insert(2, '../Views')
 
+from Controllers.ViewSwitcher import ViewSwitcher
+from Model.CustomLabel import LoadingLabel, LogoLabel
+from Model.Overlay import Overlay
 import BaseView
 import ButtonController
 from CustomLabel import *
@@ -24,13 +26,15 @@ import PwdComplexController
 
 class LandingPage(BaseView.BaseView):
 
-    def __init__(self):
+    def __init__(self, window: MainWindow = None):
         super(LandingPage, self).__init__()
         self.ctrl = None
         self.components = []
         self.p = None
         self.p2 = None
-        self.initUI()
+        self.mw = window
+        print(window)
+        #self.initUI()
 
 
     def initUI(self):
@@ -105,8 +109,11 @@ class LandingPage(BaseView.BaseView):
         self.setPalette(pallete)
 
         self.overlay = Overlay(self.m_label)
-        self.m_label.clicked.connect(self.overlay.show)
+        #self.m_label.clicked.connect(self.overlay.show)
         self.logo_label.clicked.connect(self.overlay.show)
+
+        self.controller = ViewSwitcher(self)
+        self.m_label.clicked.connect(self.controller.SwitchOnClick)
 
 
 

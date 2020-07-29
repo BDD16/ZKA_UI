@@ -12,11 +12,13 @@ sys.path.insert(2, '../Views')
 import BaseView
 import ButtonController
 import LandingPage
+import AuthenticateView
+
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
-        super(MainWindow,self).__init__()
+        super(MainWindow, self).__init__()
         self.ctrl = None
         self.components = []
         self.view = None
@@ -30,11 +32,10 @@ class MainWindow(QMainWindow):
         painter.setPen(QPen(Qt.white))
         painter.drawRect(self.childrenRect())
 
-
     def initUI(self):
-        self.view = LandingPage.LandingPage()
-        #self.view.initUI()
-        #self.statusBar().showMessage('StatusBar:')
+        self.view = LandingPage.LandingPage(window=self)
+        self.view.initUI()
+        # self.statusBar().showMessage('StatusBar:')
         self.setCentralWidget(self.view)
 
         self.setGeometry(300, 300, 300, 300)
@@ -44,7 +45,7 @@ class MainWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_NoSystemBackground, True)
-        #self.setWindowOpacity(0.35)
+        # self.setWindowOpacity(0.35)
 
         op = QGraphicsOpacityEffect(self.view)
         op.setOpacity(1.0)
@@ -55,7 +56,6 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
-
     app = QApplication(sys.argv)
     ex = MainWindow()
     sys.exit(app.exec_())

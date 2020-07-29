@@ -8,7 +8,7 @@ class BaseView(QWidget):
     def __init__(self):
         super(BaseView, self).__init__()
         self.components = []
-        self.initUI()
+        #self.initUI()
 
 
     def initUI(self):

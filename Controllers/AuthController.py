@@ -2,7 +2,7 @@ import sys, os
 from typing import Any
 
 from Model import CryptoTools
-from Model.ZeroKnowledgeAuth import ZeroKnowledgeAuthServer, modexp, ZeroKnowledgeAuthClient, powCustom
+from Model.ZeroKnowledgeAuth import ZeroKnowledgeAuthServer, modexp, ZeroKnowledgeAuthClient
 
 sys.path.insert(0, '../Controllers')
 sys.path.insert(1, '../Model')
@@ -10,32 +10,20 @@ sys.path.insert(2, '../Views')
 
 from Controllers import BaseController
 from Views import BaseView
-from Views.AuthenticateView import AuthenticateView
 
 
-class ViewSwitcher(BaseController.BaseController):
+class AuthController(BaseController.BaseController):
 
     def __init__(self, view: BaseView = None):
-        super(ViewSwitcher, self).__init__(view)
+        super(AuthController, self).__init__(view)
         self.view = view
-        #self.view.m_label.clicked.connect(self.SwitchOnClick)
-
-
-    def SwitchOnClick(self):
-        newView = AuthenticateView()
-        self.view.mw.setCentralWidget(newView)
-        self.newview = newView
-        self.view.mw.show()
-        self.view = newView
-
-        print("MADE IT TO SWITCHONECLICK, END")
 
 
     def getUserName(self):
-        self.username = self.newview.usernameBox.text()
+        self.username = self.view.usernameBox.text()
 
     def getPassword(self):
-        self.password = self.newview.passwordBox.text()
+        self.password = self.view.passwordBox.text()
 
     def Authenticate(self):
         logo = ''' ____________ _________________  ___________           .__
@@ -60,7 +48,7 @@ class ViewSwitcher(BaseController.BaseController):
         username = self.username
         x = crypt.Sha256(str(self.password).encode())
         Y = modexp(gknot, int.from_bytes(x, byteorder='little'), p)
-        server.registration(username, Y)
+        #server.registration(username, Y)
         a = server.SendSession()
         print('a: ' + str(a))
         client = ZeroKnowledgeAuthClient(username, crypt.Sha256(str(self.password).encode()),
@@ -71,4 +59,3 @@ class ViewSwitcher(BaseController.BaseController):
         '''
         testpassword: thisIsNotThePasswordYouAreLookingFor
         '''
-

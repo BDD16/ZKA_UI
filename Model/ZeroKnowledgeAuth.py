@@ -74,7 +74,7 @@ class ZeroKnowledgeAuthClient():
         print("T1")
         print(self.T1)
 
-    def init():
+    def init(self):
         # TODO:
         return
 

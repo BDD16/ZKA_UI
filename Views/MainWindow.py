@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
         # self.statusBar().showMessage('StatusBar:')
         self.setCentralWidget(self.view)
 
-        self.setGeometry(300, 300, 300, 300)
+        self.setGeometry(0, 0, 250, 250)
 
         self.setWindowTitle('Complexity Calculator')
 

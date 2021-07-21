@@ -1,3 +1,8 @@
+"""
+DBA 1337_TECH, AUSTIN TEXAS © July 2021
+Proof of Concept code, No liabilities or warranties expressed or implied.
+"""
+
 def modexp(x, y, n):
     result = 1
     while y != 0:

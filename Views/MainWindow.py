@@ -1,3 +1,8 @@
+"""
+DBA 1337_TECH, AUSTIN TEXAS © July 2021
+Proof of Concept code, No liabilities or warranties expressed or implied.
+"""
+
 import sys
 from PyQt5.QtWidgets import QWidget, QCheckBox, QApplication, QMainWindow, QGraphicsOpacityEffect
 from PyQt5.QtCore import Qt

@@ -1,23 +1,10 @@
 TODO: Project: Shark UI
-1) Create a controller for interacting with the password complexity model
-2) add in One Text entry
-3) add in a static progress bar for that is updated dynamically No need for
-calculation button
-    -in Java this is easy as there is a key down interrupt.
-    -Need to find the equivalent key down signal for implementing the dynamic
-
-4)User Story: Password complexity bar should be calculated as a new character is typed
-
-----------MVP (Minium Viable Product is up to this point)-----------------------
-0) include documentation in final production deliverable i.e. USER GUIDE
-----------Bells and Whistles----------------------------------------------------
-
-5)Change the color of the bar from red as insufficient, orange as sufficient,
-yellow as good, and green as secure.
-    -Need to come up with a value indicator that has been published to identify
-    These colored tiers
-
-6)Change the background color to a gradient gray (white near the bottom)
-7)Ability to be resized (in case screen resolutions change)
-8) show the calculated score to the right of the bar (in case the bar is saturated)
-9) include a drop down of different languages and and adapt N to the equation.
+1)TODO:Write code for the Zero Knowledge Authentication (ZKA)
+2)TODO:Integrate that code into a UI
+3)TODO:Have UI be fun and demonstrate something Novel that I have never coded before
+4)TODO:Have UI be more of a splash screen
+5)TODO:Have UI contain a custom paint dialog feature
+6)TODO:Have a Long Password for viewing whether authentication worked or not
+7)TODO:Have Console show all values related to ZKA as a Proof of concept to the Audience
+-----Minimum Viable Product has been attained 07/19/2021----
+DONE: as of July 19, 2021 all steps 1-7 have been Completed

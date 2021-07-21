@@ -1,3 +1,8 @@
+"""
+DBA 1337_TECH, AUSTIN TEXAS © July 2021
+Proof of Concept code, No liabilities or warranties expressed or implied.
+"""
+
 import sys, os
 from typing import Any
 
@@ -26,7 +31,7 @@ class AuthController(BaseController.BaseController):
         self.password = self.view.passwordBox.text()
 
     def Authenticate(self):
-        logo = ''' ____________ _________________  ___________           .__
+        logo = '''\t\t ____________ _________________  ___________           .__
         /_   \_____  \\_____  \______  \ \__    ___/___   ____ |  |__
          |   | _(__  <  _(__  <   /    /   |    |_/ __ \_/ ___\|  |  \\
          |   |/       \/       \ /    /    |    |\  ___/\  \___|   Y  \\
@@ -35,7 +40,6 @@ class AuthController(BaseController.BaseController):
         print(logo)
         print("\n\n")
         print("Beginning Registration")
-        import Crypto.Util.number
         gknot = 3
 
         p = 4074071952668972172536891376818756322102936787331872501272280898708762599526673412366794779

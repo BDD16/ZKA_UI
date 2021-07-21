@@ -1,3 +1,8 @@
+"""
+DBA 1337_TECH, AUSTIN TEXAS © July 2021
+Proof of Concept code, No liabilities or warranties expressed or implied.
+"""
+
 '''
 Although it is titled the Landing page it is being treated more like the initial
 Setup.  Luckily this is just a view so it is subject to change, the Developer can
